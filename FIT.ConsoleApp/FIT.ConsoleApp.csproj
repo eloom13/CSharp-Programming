@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\**" />
-    <EmbeddedResource Remove="Models\**" />
-    <None Remove="Models\**" />
+    <ProjectReference Include="..\FIT.Data\FIT.Data.csproj" />
+    <ProjectReference Include="..\FIT.Infrastructure\FIT.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FIT.Data\FIT.Data.csproj" />
-    <ProjectReference Include="..\FIT.Infrastructure\FIT.Infrastructure.csproj" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
