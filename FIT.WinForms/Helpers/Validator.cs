@@ -4,16 +4,15 @@
     {
         public static bool ProvjeriUnos(Control kontrola, ErrorProvider err, string name)
         {
-            bool valid = true;
+            bool validanUnos = true;
+            if (kontrola is PictureBox && (kontrola as PictureBox).Image == null)
+                validanUnos = false;
+            else if (kontrola is ComboBox && (kontrola as ComboBox).SelectedIndex < 0)
+                validanUnos = false;
+            else if (kontrola is TextBox && !(kontrola as TextBox).Text.IsSet())
+                validanUnos = false;
 
-            if(kontrola is PictureBox && (kontrola as PictureBox).Image == null)
-                valid = false;
-            else if(kontrola is ComboBox && (kontrola as ComboBox).SelectedIndex < 0)
-                valid = false;
-            else if(kontrola is TextBox && !(kontrola as TextBox).Text.IsSet())
-                valid = false;
-
-            if(!valid)
+            if (!validanUnos)
             {
                 err.SetError(kontrola, Resursi.Get(name));
                 return false;

@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace FIT.Infrastructure
 {
+
     public class KonekcijaNaBazu 
     {
 

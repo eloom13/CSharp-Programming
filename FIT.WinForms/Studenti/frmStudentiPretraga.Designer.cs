@@ -32,9 +32,11 @@
             Indeks = new DataGridViewTextBoxColumn();
             Ime = new DataGridViewTextBoxColumn();
             Prezime = new DataGridViewTextBoxColumn();
-            Aktivan = new DataGridViewCheckBoxColumn();
             DatumRodjenja = new DataGridViewTextBoxColumn();
+            Semestar = new DataGridViewTextBoxColumn();
+            Aktivan = new DataGridViewCheckBoxColumn();
             btnNoviStudent = new Button();
+            txtFilter = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvStudenti).BeginInit();
             SuspendLayout();
             // 
@@ -42,33 +44,30 @@
             // 
             dgvStudenti.AllowUserToAddRows = false;
             dgvStudenti.AllowUserToDeleteRows = false;
+            dgvStudenti.AllowUserToOrderColumns = true;
             dgvStudenti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { Indeks, Ime, Prezime, Aktivan, DatumRodjenja });
-            dgvStudenti.Location = new Point(12, 75);
+            dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { Indeks, Ime, Prezime, DatumRodjenja, Semestar, Aktivan });
+            dgvStudenti.Location = new Point(12, 50);
             dgvStudenti.Name = "dgvStudenti";
             dgvStudenti.ReadOnly = true;
-            dgvStudenti.RowHeadersWidth = 51;
-            dgvStudenti.RowTemplate.Height = 29;
+            dgvStudenti.RowTemplate.Height = 25;
             dgvStudenti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudenti.Size = new Size(843, 296);
+            dgvStudenti.Size = new Size(757, 244);
             dgvStudenti.TabIndex = 0;
             dgvStudenti.CellContentClick += dgvStudenti_CellContentClick;
             // 
             // Indeks
             // 
             Indeks.DataPropertyName = "Indeks";
-            Indeks.HeaderText = "Indeks";
-            Indeks.MinimumWidth = 6;
+            Indeks.HeaderText = "Indeksa";
             Indeks.Name = "Indeks";
             Indeks.ReadOnly = true;
-            Indeks.Width = 125;
             // 
             // Ime
             // 
             Ime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Ime.DataPropertyName = "Ime";
             Ime.HeaderText = "Ime";
-            Ime.MinimumWidth = 6;
             Ime.Name = "Ime";
             Ime.ReadOnly = true;
             // 
@@ -77,52 +76,64 @@
             Prezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Prezime.DataPropertyName = "Prezime";
             Prezime.HeaderText = "Prezime";
-            Prezime.MinimumWidth = 6;
             Prezime.Name = "Prezime";
             Prezime.ReadOnly = true;
+            // 
+            // DatumRodjenja
+            // 
+            DatumRodjenja.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DatumRodjenja.DataPropertyName = "DatumRodjenja";
+            DatumRodjenja.HeaderText = "Datum rođenja";
+            DatumRodjenja.Name = "DatumRodjenja";
+            DatumRodjenja.ReadOnly = true;
+            // 
+            // Semestar
+            // 
+            Semestar.DataPropertyName = "Semestar";
+            Semestar.HeaderText = "Semestar";
+            Semestar.Name = "Semestar";
+            Semestar.ReadOnly = true;
             // 
             // Aktivan
             // 
             Aktivan.DataPropertyName = "Aktivan";
             Aktivan.HeaderText = "Aktivan";
-            Aktivan.MinimumWidth = 6;
             Aktivan.Name = "Aktivan";
             Aktivan.ReadOnly = true;
-            Aktivan.Width = 125;
-            // 
-            // DatumRodjenja
-            // 
-            DatumRodjenja.DataPropertyName = "DatumRodjenja";
-            DatumRodjenja.HeaderText = "Datum rodjenja";
-            DatumRodjenja.MinimumWidth = 6;
-            DatumRodjenja.Name = "DatumRodjenja";
-            DatumRodjenja.ReadOnly = true;
-            DatumRodjenja.Resizable = DataGridViewTriState.True;
-            DatumRodjenja.SortMode = DataGridViewColumnSortMode.NotSortable;
-            DatumRodjenja.Width = 125;
             // 
             // btnNoviStudent
             // 
-            btnNoviStudent.Location = new Point(742, 22);
+            btnNoviStudent.Location = new Point(678, 21);
             btnNoviStudent.Name = "btnNoviStudent";
-            btnNoviStudent.Size = new Size(113, 32);
+            btnNoviStudent.Size = new Size(91, 23);
             btnNoviStudent.TabIndex = 1;
             btnNoviStudent.Text = "Novi student";
             btnNoviStudent.UseVisualStyleBackColor = true;
             btnNoviStudent.Click += btnNoviStudent_Click;
             // 
+            // txtFilter
+            // 
+            txtFilter.Location = new Point(12, 22);
+            txtFilter.Name = "txtFilter";
+            txtFilter.Size = new Size(660, 23);
+            txtFilter.TabIndex = 2;
+            txtFilter.TextChanged += txtFilter_TextChanged;
+            // 
             // frmStudentiPretraga
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(867, 387);
+            ClientSize = new Size(785, 308);
+            Controls.Add(txtFilter);
             Controls.Add(btnNoviStudent);
             Controls.Add(dgvStudenti);
             Name = "frmStudentiPretraga";
-            Text = "Pretraga Studenata";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Pretraga studenata";
             Load += frmStudentiPretraga_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStudenti).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -131,8 +142,10 @@
         private DataGridViewTextBoxColumn Indeks;
         private DataGridViewTextBoxColumn Ime;
         private DataGridViewTextBoxColumn Prezime;
-        private DataGridViewCheckBoxColumn Aktivan;
         private DataGridViewTextBoxColumn DatumRodjenja;
+        private DataGridViewTextBoxColumn Semestar;
+        private DataGridViewCheckBoxColumn Aktivan;
         private Button btnNoviStudent;
+        private TextBox txtFilter;
     }
 }
