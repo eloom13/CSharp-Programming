@@ -7,6 +7,18 @@ namespace FIT.Infrastructure
         public static List<Korisnik> Korisnici = GenerisiKorisnike();
         public static List<Student> Studenti = GenerisiStudente();
         public static List<Semestar> Semestri = GenerisiSemestre();
+        public static List<Predmet> Predmeti = GenerisiPredmete();
+
+        private static List<Predmet> GenerisiPredmete()
+        {
+            return new List<Predmet>()
+            {
+                new Predmet() {Id = 1, Naziv = "Programiranje I", Semestar = 1},
+                new Predmet() {Id = 2, Naziv = "Programiranje II",Semestar = 2},
+                new Predmet() {Id = 3, Naziv = "Racunarske mreze",Semestar = 3},
+                new Predmet() {Id = 4, Naziv = "Matematika I", Semestar = 3},
+            };
+        }
 
         private static List<Semestar> GenerisiSemestre()
         {
@@ -51,19 +63,21 @@ namespace FIT.Infrastructure
         }
         private static List<Korisnik> GenerisiKorisnike()
         {
-            //var korisnik = new Korisnik()
-            //{
-            //    Id = 1,
-            //    Aktivan = true,
-            //    Email = "admin@edu.fit.ba",
-            //    Ime = "Denis",
-            //    KorisnickoIme = "admin",
-            //    Lozinka = "admin",
-            //    Prezime = "Music"
-            //};
-            //List<Korisnik> lista = new List<Korisnik>();
-            //lista.Add(korisnik);
-            //return lista;
+            /*
+            var korisnik = new Korisnik()
+            {
+                Id = 1,
+                Aktivan = true,
+                Email = "admin@edu.fit.ba",
+                Ime = "Denis",
+                KorisnickoIme = "admin",
+                Lozinka = "admin",
+                Prezime = "Music"
+            };
+            List<Korisnik> lista = new List<Korisnik>();
+            lista.Add(korisnik);
+            return lista;
+            */
 
             return new List<Korisnik>(){
                 new Korisnik()

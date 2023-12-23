@@ -120,6 +120,9 @@
   <data name="AccountNotActive" xml:space="preserve">
     <value>vaš korisnički nalog nije aktivan!</value>
   </data>
+  <data name="DuplicatedValue" xml:space="preserve">
+    <value>Predmet vec dodan</value>
+  </data>
   <data name="EmailDomain" xml:space="preserve">
     <value>@edu.fit.ba</value>
   </data>

@@ -14,5 +14,6 @@
         public const string AccountNotActive = "AccountNotActive";
         public const string EmailDomain = "EmailDomain";
         public const string UsernameOrPasswordNotValid = "UsernameOrPasswordNotValid";        
+        public const string DuplicatedValue = "DuplicatedValue";
     }
 }

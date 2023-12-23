@@ -6,5 +6,13 @@
         {
             return !string.IsNullOrWhiteSpace(sadrzaj);
         }
+
+        public static void UcitajPodatke<T>(this ComboBox comboBox, List<T> datasource,
+            string displaymember = "Naziv", string valuMember = "Id")
+        {
+            comboBox.DataSource = datasource;
+            comboBox.DisplayMember = displaymember;
+            comboBox.ValueMember = valuMember;
+        }
     }
 }

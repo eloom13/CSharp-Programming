@@ -64,7 +64,6 @@ namespace FIT.WinForms.Studenti
         public bool FilterOcjena2(int ocjena) => ocjena >= 9;
 
 
-
         private void AnonimniTipovi()
         {
             //var student = (Id: 1, Indeks: "IB190091", Ime: "Denis", Prezime: "Music", Semestar:2);
@@ -83,7 +82,6 @@ namespace FIT.WinForms.Studenti
             PrikaziObj(student);
 
             var denis = new { Id = 1, Indeks = "IB190091", Ime = "Denis", Prezime = "Music" };
-
         }
 
         private dtoStudent PrikaziObj(dtoStudent student)
@@ -121,9 +119,6 @@ namespace FIT.WinForms.Studenti
                 MessageBox.Show($"{par.Key} -> {par.Value}");
             }
 
-
-
-
             //Kolekcija<string, int> * ocjene = new Kolekcija<string, int>();
             Dictionary<string, int> ocjene = new Dictionary<string, int>();
             ocjene.Add("IB190091", 8);
@@ -134,13 +129,6 @@ namespace FIT.WinForms.Studenti
             {
                 MessageBox.Show($"{par.Key} -> {par.Value}");
             }
-
-
-
-
-
-
-
         }
 
         private dynamic GetObjekatSaNepostojecomMetodom()
@@ -181,9 +169,19 @@ namespace FIT.WinForms.Studenti
 
         private void dgvStudenti_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //if(e.ColumnIndex== 6) Jedna opcija
+
             var odabraniStudent = dgvStudenti.SelectedRows[0].DataBoundItem as Student;
-            frmStudentiNovi frmEditovanjeStudenta = new frmStudentiNovi(odabraniStudent);
-            frmEditovanjeStudenta.ShowDialog();
+
+            Form forma = null;
+
+            if (dgvStudenti.CurrentCell is DataGridViewButtonCell)
+                forma = new frmStudentiPredmeti(odabraniStudent);
+            else  
+                forma = new frmStudentiNovi(odabraniStudent);
+
+            forma.ShowDialog();
+
         }
         private void UcitajStudente(List<Student> studenti = null)
         {
