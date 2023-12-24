@@ -1,7 +1,12 @@
 ﻿using FIT.Data;
 
+using Microsoft.EntityFrameworkCore;
+
+using System.Configuration;
+
 namespace FIT.Infrastructure
 {
+
     public class InMemoryDb
     {
         public static List<Korisnik> Korisnici = GenerisiKorisnike();
@@ -11,15 +16,14 @@ namespace FIT.Infrastructure
 
         private static List<Predmet> GenerisiPredmete()
         {
-            return new List<Predmet>()
-            {
-                new Predmet() {Id = 1, Naziv = "Programiranje I", Semestar = 1},
-                new Predmet() {Id = 2, Naziv = "Programiranje II",Semestar = 2},
-                new Predmet() {Id = 3, Naziv = "Racunarske mreze",Semestar = 3},
-                new Predmet() {Id = 4, Naziv = "Matematika I", Semestar = 3},
+            return new List<Predmet>() {
+                new Predmet() { Id = 1, Naziv = "Programiranje I", Semestar = 1 },
+                new Predmet() { Id = 2, Naziv = "Programiranje II", Semestar = 2 },
+                new Predmet() { Id = 3, Naziv = "Racunarske mreze" , Semestar = 2},
+                new Predmet() { Id = 4, Naziv = "Matematika I", Semestar = 1 }
+
             };
         }
-
         private static List<Semestar> GenerisiSemestre()
         {
             return new List<Semestar>() {
@@ -63,21 +67,19 @@ namespace FIT.Infrastructure
         }
         private static List<Korisnik> GenerisiKorisnike()
         {
-            /*
-            var korisnik = new Korisnik()
-            {
-                Id = 1,
-                Aktivan = true,
-                Email = "admin@edu.fit.ba",
-                Ime = "Denis",
-                KorisnickoIme = "admin",
-                Lozinka = "admin",
-                Prezime = "Music"
-            };
-            List<Korisnik> lista = new List<Korisnik>();
-            lista.Add(korisnik);
-            return lista;
-            */
+            //var korisnik = new Korisnik()
+            //{
+            //    Id = 1,
+            //    Aktivan = true,
+            //    Email = "admin@edu.fit.ba",
+            //    Ime = "Denis",
+            //    KorisnickoIme = "admin",
+            //    Lozinka = "admin",
+            //    Prezime = "Music"
+            //};
+            //List<Korisnik> lista = new List<Korisnik>();
+            //lista.Add(korisnik);
+            //return lista;
 
             return new List<Korisnik>(){
                 new Korisnik()

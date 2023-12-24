@@ -1,6 +1,7 @@
 ﻿using FIT.Data;
 using FIT.Infrastructure;
 using FIT.WinForms.Helpers;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +12,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+
 namespace FIT.WinForms.Studenti
 {
     public partial class frmStudentiPredmeti : Form
     {
         private Student? student;
+        DLWMSDbContext baza = new DLWMSDbContext();
+
         public frmStudentiPredmeti(Student student)
         {
             InitializeComponent();
@@ -26,22 +31,28 @@ namespace FIT.WinForms.Studenti
         private void frmStudentiPredmeti_Load(object sender, EventArgs e)
         {
             UcitajPredmete();
-            UcitajPolozenePredmete();
+            UcitajPolozenePredemte();
             UcitajLicnePodatke();
         }
 
         private void UcitajLicnePodatke()
         {
-            pbSlikaStudenta.Image = student.Slika;
-            lblImePrezime.Text = $"{student.Indeks}, {student.Ime} {student.Prezime}";
+            lblIndeks.Text = $"{student.Indeks}";
+            lblImePrezime.Text = $"{student.Ime} {student.Prezime}";
+            pbSlika.Image = student.Slika.ToImage();
+
         }
 
         private void UcitajPredmete()
         {
-            cmbPredmeti.UcitajPodatke(InMemoryDb.Predmeti);
+            cmbPredmeti.UcitajPodatke(baza.Predmeti.ToList());
+
+            //cmbPredmeti.DataSource = InMemoryDb.Predmeti;
+            //cmbPredmeti.DisplayMember = "Naziv";
+            //cmbPredmeti.ValueMember = "Id";
         }
 
-        private void UcitajPolozenePredmete()
+        private void UcitajPolozenePredemte()
         {
             dgvPolozeniPredmeti.DataSource = null;
             dgvPolozeniPredmeti.DataSource = student.PolozeniPredmeti;
@@ -49,24 +60,34 @@ namespace FIT.WinForms.Studenti
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            if(ValidanUnos())
+            if (ValidanUnos())
             {
-                var predmet = cmbPredmeti.SelectedItem as Predmet;
+                var predmet = cmbPredmeti.SelectedItem as Predmet;//PRI
 
+                var predmetPostoji = student.PolozeniPredmeti.Where(polozeni =>
+                                        polozeni.PredmetId == predmet.Id).Count() > 0;
 
-                //var postoji = student.PolozeniPredmeti.Where(polozeni => polozeni.PredmetId == predmet.Id).Count() > 0;
-
-                foreach (var p in student.PolozeniPredmeti)
+                if (predmetPostoji)
                 {
-                    if (p.PredmetId == predmet.Id)
-                        MessageBox.Show($"{Resursi.Get(Kljucevi.DuplicatedValue)}",
-                            Resursi.Get(Kljucevi.Info),
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                    MessageBox.Show($"{Resursi.Get(Kljucevi.DuplicatedValue)}", Resursi.Get(Kljucevi.Info),
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
                     return;
                 }
 
-                var polozeniPredmet = new PolozeniPredmet()
+                //foreach (var p in student.PolozeniPredmeti)
+                //{
+                //    if(p.PredmetId == predmet.Id)
+                //    {
+                //        MessageBox.Show($"{Resursi.Get(Kljucevi.DuplicatedCourse)}", Resursi.Get(Kljucevi.Info),
+                //                MessageBoxButtons.OK,
+                //                MessageBoxIcon.Information);
+                //        return;
+
+                //    }
+                //}
+
+                var polozeni = new PolozeniPredmet()
                 {
                     Id = student.PolozeniPredmeti.Count + 1,
                     DatumPolaganja = dtpDatumPolaganja.Value,
@@ -74,17 +95,16 @@ namespace FIT.WinForms.Studenti
                     Predmet = predmet,
                     PredmetId = predmet.Id
                 };
-
-                student.PolozeniPredmeti.Add(polozeniPredmet);
-                UcitajPolozenePredmete();
+                student.PolozeniPredmeti.Add(polozeni);
+                UcitajPolozenePredemte();
             }
-        }
 
+        }
         private bool ValidanUnos()
         {
             return
-                Validator.ProvjeriUnos(cmbPredmeti, err, Kljucevi.ReqiredValue) &&
-                Validator.ProvjeriUnos(cmbOcjene, err, Kljucevi.ReqiredValue);
+            Validator.ProvjeriUnos(cmbPredmeti, errorProvider1, Kljucevi.ReqiredValue) &&
+                Validator.ProvjeriUnos(cmbOcjene, errorProvider1, Kljucevi.ReqiredValue);
         }
     }
 }

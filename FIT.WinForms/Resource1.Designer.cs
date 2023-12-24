@@ -70,11 +70,11 @@ namespace FIT.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Predmet vec dodan.
+        ///   Looks up a localized string similar to Odabrani predmet je već dodat.
         /// </summary>
-        internal static string DuplicatedValue {
+        internal static string DuplicatedCourse {
             get {
-                return ResourceManager.GetString("DuplicatedValue", resourceCulture);
+                return ResourceManager.GetString("DuplicatedCourse", resourceCulture);
             }
         }
         

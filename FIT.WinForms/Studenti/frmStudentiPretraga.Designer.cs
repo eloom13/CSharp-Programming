@@ -48,23 +48,20 @@
             dgvStudenti.AllowUserToOrderColumns = true;
             dgvStudenti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudenti.Columns.AddRange(new DataGridViewColumn[] { Indeks, Ime, Prezime, DatumRodjenja, Semestar, Aktivan, Polozeni });
-            dgvStudenti.Location = new Point(14, 67);
-            dgvStudenti.Margin = new Padding(3, 4, 3, 4);
+            dgvStudenti.Location = new Point(12, 50);
             dgvStudenti.Name = "dgvStudenti";
             dgvStudenti.ReadOnly = true;
-            dgvStudenti.RowHeadersWidth = 51;
             dgvStudenti.RowTemplate.Height = 25;
             dgvStudenti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvStudenti.Size = new Size(865, 325);
+            dgvStudenti.Size = new Size(757, 244);
             dgvStudenti.TabIndex = 0;
             dgvStudenti.CellContentClick += dgvStudenti_CellContentClick;
             // 
             // btnNoviStudent
             // 
-            btnNoviStudent.Location = new Point(775, 28);
-            btnNoviStudent.Margin = new Padding(3, 4, 3, 4);
+            btnNoviStudent.Location = new Point(678, 21);
             btnNoviStudent.Name = "btnNoviStudent";
-            btnNoviStudent.Size = new Size(104, 31);
+            btnNoviStudent.Size = new Size(91, 23);
             btnNoviStudent.TabIndex = 1;
             btnNoviStudent.Text = "Novi student";
             btnNoviStudent.UseVisualStyleBackColor = true;
@@ -72,10 +69,9 @@
             // 
             // txtFilter
             // 
-            txtFilter.Location = new Point(14, 29);
-            txtFilter.Margin = new Padding(3, 4, 3, 4);
+            txtFilter.Location = new Point(12, 22);
             txtFilter.Name = "txtFilter";
-            txtFilter.Size = new Size(754, 27);
+            txtFilter.Size = new Size(660, 23);
             txtFilter.TabIndex = 2;
             txtFilter.TextChanged += txtFilter_TextChanged;
             // 
@@ -83,17 +79,14 @@
             // 
             Indeks.DataPropertyName = "Indeks";
             Indeks.HeaderText = "Indeksa";
-            Indeks.MinimumWidth = 6;
             Indeks.Name = "Indeks";
             Indeks.ReadOnly = true;
-            Indeks.Width = 125;
             // 
             // Ime
             // 
             Ime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Ime.DataPropertyName = "Ime";
             Ime.HeaderText = "Ime";
-            Ime.MinimumWidth = 6;
             Ime.Name = "Ime";
             Ime.ReadOnly = true;
             // 
@@ -102,7 +95,6 @@
             Prezime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Prezime.DataPropertyName = "Prezime";
             Prezime.HeaderText = "Prezime";
-            Prezime.MinimumWidth = 6;
             Prezime.Name = "Prezime";
             Prezime.ReadOnly = true;
             // 
@@ -111,7 +103,6 @@
             DatumRodjenja.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             DatumRodjenja.DataPropertyName = "DatumRodjenja";
             DatumRodjenja.HeaderText = "Datum rođenja";
-            DatumRodjenja.MinimumWidth = 6;
             DatumRodjenja.Name = "DatumRodjenja";
             DatumRodjenja.ReadOnly = true;
             // 
@@ -119,39 +110,32 @@
             // 
             Semestar.DataPropertyName = "Semestar";
             Semestar.HeaderText = "Semestar";
-            Semestar.MinimumWidth = 6;
             Semestar.Name = "Semestar";
             Semestar.ReadOnly = true;
-            Semestar.Width = 125;
             // 
             // Aktivan
             // 
             Aktivan.DataPropertyName = "Aktivan";
             Aktivan.HeaderText = "Aktivan";
-            Aktivan.MinimumWidth = 6;
             Aktivan.Name = "Aktivan";
             Aktivan.ReadOnly = true;
-            Aktivan.Width = 125;
             // 
             // Polozeni
             // 
             Polozeni.HeaderText = "";
-            Polozeni.MinimumWidth = 6;
             Polozeni.Name = "Polozeni";
             Polozeni.ReadOnly = true;
             Polozeni.Text = "Predmeti";
             Polozeni.UseColumnTextForButtonValue = true;
-            Polozeni.Width = 125;
             // 
             // frmStudentiPretraga
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(897, 415);
+            ClientSize = new Size(785, 308);
             Controls.Add(txtFilter);
             Controls.Add(btnNoviStudent);
             Controls.Add(dgvStudenti);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmStudentiPretraga";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pretraga studenata";
