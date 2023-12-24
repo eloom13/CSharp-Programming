@@ -1,5 +1,8 @@
-﻿namespace FIT.Data
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FIT.Data
 {
+    [Table("PolozeniPredmeti")]
     public class PolozeniPredmet
     {
         public int Id { get; set; }

@@ -51,16 +51,22 @@
             openFileDialog1 = new OpenFileDialog();
             btnOdabirSlike = new Button();
             errorProvider1 = new ErrorProvider(components);
+            dgvUloge = new DataGridView();
+            Naziv = new DataGridViewTextBoxColumn();
+            cmbUloge = new ComboBox();
+            btnDodajUlogu = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbSlika).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUloge).BeginInit();
             SuspendLayout();
             // 
             // btnSpasi
             // 
-            btnSpasi.Location = new Point(454, 273);
+            btnSpasi.Location = new Point(519, 364);
+            btnSpasi.Margin = new Padding(3, 4, 3, 4);
             btnSpasi.Name = "btnSpasi";
-            btnSpasi.Size = new Size(75, 23);
+            btnSpasi.Size = new Size(86, 31);
             btnSpasi.TabIndex = 2;
             btnSpasi.Text = "Spasi";
             btnSpasi.UseVisualStyleBackColor = true;
@@ -84,9 +90,11 @@
             groupBox2.Controls.Add(txtIme);
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label5);
-            groupBox2.Location = new Point(205, 21);
+            groupBox2.Location = new Point(234, 28);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(324, 246);
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(370, 328);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             // 
@@ -94,9 +102,10 @@
             // 
             btnNovaLozinka.BackgroundImage = Properties.Resources._5619264;
             btnNovaLozinka.BackgroundImageLayout = ImageLayout.Stretch;
-            btnNovaLozinka.Location = new Point(280, 177);
+            btnNovaLozinka.Location = new Point(320, 236);
+            btnNovaLozinka.Margin = new Padding(3, 4, 3, 4);
             btnNovaLozinka.Name = "btnNovaLozinka";
-            btnNovaLozinka.Size = new Size(26, 23);
+            btnNovaLozinka.Size = new Size(30, 31);
             btnNovaLozinka.TabIndex = 15;
             btnNovaLozinka.UseVisualStyleBackColor = true;
             btnNovaLozinka.Click += btnNovaLozinka_Click;
@@ -106,9 +115,10 @@
             cbAktivan.AutoSize = true;
             cbAktivan.Checked = true;
             cbAktivan.CheckState = CheckState.Checked;
-            cbAktivan.Location = new Point(14, 206);
+            cbAktivan.Location = new Point(16, 275);
+            cbAktivan.Margin = new Padding(3, 4, 3, 4);
             cbAktivan.Name = "cbAktivan";
-            cbAktivan.Size = new Size(66, 19);
+            cbAktivan.Size = new Size(80, 24);
             cbAktivan.TabIndex = 7;
             cbAktivan.Text = "Aktivan";
             cbAktivan.UseVisualStyleBackColor = true;
@@ -116,9 +126,9 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(161, 109);
+            label7.Location = new Point(184, 145);
             label7.Name = "label7";
-            label7.Size = new Size(58, 15);
+            label7.Size = new Size(73, 20);
             label7.TabIndex = 17;
             label7.Text = "Semestar:";
             // 
@@ -126,118 +136,126 @@
             // 
             cmbSemestri.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSemestri.FormattingEnabled = true;
-            cmbSemestri.Location = new Point(162, 127);
+            cmbSemestri.Location = new Point(185, 169);
+            cmbSemestri.Margin = new Padding(3, 4, 3, 4);
             cmbSemestri.Name = "cmbSemestri";
-            cmbSemestri.Size = new Size(143, 23);
+            cmbSemestri.Size = new Size(163, 28);
             cmbSemestri.TabIndex = 4;
             // 
             // txtLozinka
             // 
-            txtLozinka.Location = new Point(153, 177);
+            txtLozinka.Location = new Point(175, 236);
+            txtLozinka.Margin = new Padding(3, 4, 3, 4);
             txtLozinka.Name = "txtLozinka";
             txtLozinka.PasswordChar = '*';
-            txtLozinka.Size = new Size(121, 23);
+            txtLozinka.Size = new Size(138, 27);
             txtLozinka.TabIndex = 6;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(153, 159);
+            label2.Location = new Point(175, 212);
             label2.Name = "label2";
-            label2.Size = new Size(50, 15);
+            label2.Size = new Size(62, 20);
             label2.TabIndex = 7;
             label2.Text = "Lozinka:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(13, 64);
+            label3.Location = new Point(15, 85);
             label3.Name = "label3";
-            label3.Size = new Size(89, 15);
+            label3.Size = new Size(112, 20);
             label3.TabIndex = 16;
             label3.Text = "Datum rođenja:";
             // 
             // txtIndeks
             // 
             txtIndeks.Enabled = false;
-            txtIndeks.Location = new Point(14, 177);
+            txtIndeks.Location = new Point(16, 236);
+            txtIndeks.Margin = new Padding(3, 4, 3, 4);
             txtIndeks.Name = "txtIndeks";
-            txtIndeks.Size = new Size(132, 23);
+            txtIndeks.Size = new Size(150, 27);
             txtIndeks.TabIndex = 5;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 159);
+            label1.Location = new Point(16, 212);
             label1.Name = "label1";
-            label1.Size = new Size(74, 15);
+            label1.Size = new Size(93, 20);
             label1.TabIndex = 5;
             label1.Text = "Broj indeksa:";
             // 
             // txtEmail
             // 
             txtEmail.Enabled = false;
-            txtEmail.Location = new Point(13, 127);
+            txtEmail.Location = new Point(15, 169);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(143, 23);
+            txtEmail.Size = new Size(163, 27);
             txtEmail.TabIndex = 3;
             // 
             // dtpDatumRodjenja
             // 
-            dtpDatumRodjenja.Location = new Point(13, 82);
+            dtpDatumRodjenja.Location = new Point(15, 109);
+            dtpDatumRodjenja.Margin = new Padding(3, 4, 3, 4);
             dtpDatumRodjenja.Name = "dtpDatumRodjenja";
-            dtpDatumRodjenja.Size = new Size(292, 23);
+            dtpDatumRodjenja.Size = new Size(333, 27);
             dtpDatumRodjenja.TabIndex = 2;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(13, 109);
+            label6.Location = new Point(15, 145);
             label6.Name = "label6";
-            label6.Size = new Size(39, 15);
+            label6.Size = new Size(49, 20);
             label6.TabIndex = 9;
             label6.Text = "Email:";
             // 
             // txtPrezime
             // 
-            txtPrezime.Location = new Point(163, 38);
+            txtPrezime.Location = new Point(186, 51);
+            txtPrezime.Margin = new Padding(3, 4, 3, 4);
             txtPrezime.Name = "txtPrezime";
-            txtPrezime.Size = new Size(143, 23);
+            txtPrezime.Size = new Size(163, 27);
             txtPrezime.TabIndex = 1;
             txtPrezime.TextChanged += txtPrezime_TextChanged;
             // 
             // txtIme
             // 
-            txtIme.Location = new Point(14, 38);
+            txtIme.Location = new Point(16, 51);
+            txtIme.Margin = new Padding(3, 4, 3, 4);
             txtIme.Name = "txtIme";
-            txtIme.Size = new Size(143, 23);
+            txtIme.Size = new Size(163, 27);
             txtIme.TabIndex = 0;
             txtIme.TextChanged += txtIme_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(14, 20);
+            label4.Location = new Point(16, 27);
             label4.Name = "label4";
-            label4.Size = new Size(30, 15);
+            label4.Size = new Size(37, 20);
             label4.TabIndex = 5;
             label4.Text = "Ime:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(163, 20);
+            label5.Location = new Point(186, 27);
             label5.Name = "label5";
-            label5.Size = new Size(52, 15);
+            label5.Size = new Size(65, 20);
             label5.TabIndex = 7;
             label5.Text = "Prezime:";
             // 
             // pbSlika
             // 
             pbSlika.BorderStyle = BorderStyle.FixedSingle;
-            pbSlika.Location = new Point(12, 31);
+            pbSlika.Location = new Point(14, 41);
+            pbSlika.Margin = new Padding(3, 4, 3, 4);
             pbSlika.Name = "pbSlika";
-            pbSlika.Size = new Size(179, 207);
+            pbSlika.Size = new Size(204, 275);
             pbSlika.SizeMode = PictureBoxSizeMode.StretchImage;
             pbSlika.TabIndex = 14;
             pbSlika.TabStop = false;
@@ -248,9 +266,10 @@
             // 
             // btnOdabirSlike
             // 
-            btnOdabirSlike.Location = new Point(12, 244);
+            btnOdabirSlike.Location = new Point(14, 325);
+            btnOdabirSlike.Margin = new Padding(3, 4, 3, 4);
             btnOdabirSlike.Name = "btnOdabirSlike";
-            btnOdabirSlike.Size = new Size(179, 23);
+            btnOdabirSlike.Size = new Size(205, 31);
             btnOdabirSlike.TabIndex = 0;
             btnOdabirSlike.Text = "Odaberi sliku";
             btnOdabirSlike.UseVisualStyleBackColor = true;
@@ -260,15 +279,60 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // dgvUloge
+            // 
+            dgvUloge.AllowUserToAddRows = false;
+            dgvUloge.AllowUserToDeleteRows = false;
+            dgvUloge.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUloge.Columns.AddRange(new DataGridViewColumn[] { Naziv });
+            dgvUloge.Location = new Point(638, 103);
+            dgvUloge.Name = "dgvUloge";
+            dgvUloge.ReadOnly = true;
+            dgvUloge.RowHeadersWidth = 51;
+            dgvUloge.RowTemplate.Height = 29;
+            dgvUloge.Size = new Size(432, 292);
+            dgvUloge.TabIndex = 15;
+            // 
+            // Naziv
+            // 
+            Naziv.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Naziv.DataPropertyName = "Naziv";
+            Naziv.HeaderText = "Naziv";
+            Naziv.MinimumWidth = 6;
+            Naziv.Name = "Naziv";
+            Naziv.ReadOnly = true;
+            // 
+            // cmbUloge
+            // 
+            cmbUloge.FormattingEnabled = true;
+            cmbUloge.Location = new Point(638, 52);
+            cmbUloge.Name = "cmbUloge";
+            cmbUloge.Size = new Size(288, 28);
+            cmbUloge.TabIndex = 16;
+            // 
+            // btnDodajUlogu
+            // 
+            btnDodajUlogu.Location = new Point(958, 51);
+            btnDodajUlogu.Name = "btnDodajUlogu";
+            btnDodajUlogu.Size = new Size(112, 29);
+            btnDodajUlogu.TabIndex = 17;
+            btnDodajUlogu.Text = "Dodaj ulogu";
+            btnDodajUlogu.UseVisualStyleBackColor = true;
+            btnDodajUlogu.Click += btnDodajUlogu_Click;
+            // 
             // frmStudentiNovi
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(541, 305);
+            ClientSize = new Size(1086, 407);
+            Controls.Add(btnDodajUlogu);
+            Controls.Add(cmbUloge);
+            Controls.Add(dgvUloge);
             Controls.Add(btnOdabirSlike);
             Controls.Add(pbSlika);
             Controls.Add(btnSpasi);
             Controls.Add(groupBox2);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmStudentiNovi";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Podaci o studentu";
@@ -277,6 +341,7 @@
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbSlika).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUloge).EndInit();
             ResumeLayout(false);
         }
 
@@ -304,5 +369,9 @@
         private Button btnOdabirSlike;
         private Button btnNovaLozinka;
         private ErrorProvider errorProvider1;
+        private Button btnDodajUlogu;
+        private ComboBox cmbUloge;
+        private DataGridView dgvUloge;
+        private DataGridViewTextBoxColumn Naziv;
     }
 }

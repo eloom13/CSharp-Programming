@@ -47,7 +47,7 @@ namespace FIT.Infrastructure
                         Indeks = "IB230032",
                         Lozinka = "denis",
                         DatumRodjenja = new DateTime(2000,2,2),
-                        Semestar = 1,
+                        SemestarId = 1,
                         Slika = null
                     },
                  new Student()
@@ -60,7 +60,7 @@ namespace FIT.Infrastructure
                         Indeks = "IB230033",
                         Lozinka = "jasmin",
                         DatumRodjenja = new DateTime(2000,1,1),
-                        Semestar = 2,
+                        SemestarId = 2,
                         Slika = null
                     }
             };

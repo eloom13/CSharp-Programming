@@ -79,6 +79,15 @@ namespace FIT.WinForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Predmet vec postoji.
+        /// </summary>
+        internal static string DuplicatedValue {
+            get {
+                return ResourceManager.GetString("DuplicatedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to @edu.fit.ba.
         /// </summary>
         internal static string EmailDomain {

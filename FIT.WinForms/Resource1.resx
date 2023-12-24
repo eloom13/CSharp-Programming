@@ -123,6 +123,9 @@
   <data name="DuplicatedCourse" xml:space="preserve">
     <value>Odabrani predmet je već dodat</value>
   </data>
+  <data name="DuplicatedValue" xml:space="preserve">
+    <value>Predmet vec postoji</value>
+  </data>
   <data name="EmailDomain" xml:space="preserve">
     <value>@edu.fit.ba</value>
   </data>

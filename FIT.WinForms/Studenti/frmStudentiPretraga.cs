@@ -1,6 +1,6 @@
 ﻿using FIT.Data;
 using FIT.Infrastructure;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,8 +65,6 @@ namespace FIT.WinForms.Studenti
         public bool FilterOcjena1(int ocjena) { return ocjena >= 9; }
         public bool FilterOcjena2(int ocjena) => ocjena >= 9;
 
-
-
         private void AnonimniTipovi()
         {
             //var student = (Id: 1, Indeks: "IB190091", Ime: "Denis", Prezime: "Music", Semestar:2);
@@ -123,9 +121,6 @@ namespace FIT.WinForms.Studenti
                 MessageBox.Show($"{par.Key} -> {par.Value}");
             }
 
-
-
-
             //Kolekcija<string, int> * ocjene = new Kolekcija<string, int>();
             Dictionary<string, int> ocjene = new Dictionary<string, int>();
             ocjene.Add("IB190091", 8);
@@ -136,13 +131,6 @@ namespace FIT.WinForms.Studenti
             {
                 MessageBox.Show($"{par.Key} -> {par.Value}");
             }
-
-
-
-
-
-
-
         }
 
         private dynamic GetObjekatSaNepostojecomMetodom()
@@ -196,8 +184,11 @@ namespace FIT.WinForms.Studenti
         }
         private void UcitajStudente(List<Student> studenti = null)
         {
+            //var lista = baza.Studenti.Include("Semestar").ToList();
+            var lista = baza.Studenti.Include(s => s.Semestar).Include(s => s.Uloga).ToList();
+
             dgvStudenti.DataSource = null;
-            dgvStudenti.DataSource = studenti ?? baza.Studenti.ToList();
+            dgvStudenti.DataSource = studenti ?? lista;
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)

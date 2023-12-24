@@ -1,7 +1,7 @@
 ﻿using FIT.Data;
 using FIT.Infrastructure;
 using FIT.WinForms.Helpers;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +55,7 @@ namespace FIT.WinForms.Studenti
         private void UcitajPolozenePredemte()
         {
             dgvPolozeniPredmeti.DataSource = null;
-            dgvPolozeniPredmeti.DataSource = student.PolozeniPredmeti;
+            dgvPolozeniPredmeti.DataSource = baza.PolozeniPredmeti.Where(pp => pp.StudentId == student.Id).ToList();
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)
@@ -64,6 +64,7 @@ namespace FIT.WinForms.Studenti
             {
                 var predmet = cmbPredmeti.SelectedItem as Predmet;//PRI
 
+                /*
                 var predmetPostoji = student.PolozeniPredmeti.Where(polozeni =>
                                         polozeni.PredmetId == predmet.Id).Count() > 0;
 
@@ -74,6 +75,20 @@ namespace FIT.WinForms.Studenti
                               MessageBoxIcon.Information);
                     return;
                 }
+                */
+
+
+                var predmetPostoji = baza.PolozeniPredmeti.Where(polozeni =>
+                                        polozeni.PredmetId == predmet.Id).Count() > 0;
+
+                if (predmetPostoji)
+                {
+                    MessageBox.Show($"{Resursi.Get(Kljucevi.DuplicatedValue)}", Resursi.Get(Kljucevi.Info),
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Information);
+                    return;
+                }
+                
 
                 //foreach (var p in student.PolozeniPredmeti)
                 //{
@@ -89,17 +104,21 @@ namespace FIT.WinForms.Studenti
 
                 var polozeni = new PolozeniPredmet()
                 {
-                    Id = student.PolozeniPredmeti.Count + 1,
+                    //Id = student.PolozeniPredmeti.Count + 1,
                     DatumPolaganja = dtpDatumPolaganja.Value,
                     Ocjena = int.Parse(cmbOcjene.Text),
-                    Predmet = predmet,
-                    PredmetId = predmet.Id
+                    //Predmet = predmet,
+                    PredmetId = predmet.Id,
+                    StudentId = student.Id,
+                    Napomena = "..."
                 };
-                student.PolozeniPredmeti.Add(polozeni);
+                baza.PolozeniPredmeti.Add(polozeni);
+                baza.SaveChanges();
+
                 UcitajPolozenePredemte();
             }
-
         }
+
         private bool ValidanUnos()
         {
             return

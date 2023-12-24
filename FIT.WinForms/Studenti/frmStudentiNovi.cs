@@ -27,17 +27,19 @@ namespace FIT.WinForms.Studenti
         {
             InitializeComponent();
             _student = student ?? new Student();
+            dgvUloge.AutoGenerateColumns = false;
         }
 
         private void btnOdabirSlike_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)                
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 pbSlika.Image = Image.FromFile(openFileDialog1.FileName);
         }
 
         private void frmStudentiNovi_Load(object sender, EventArgs e)
         {
             UcitajSemestre();
+            UcitajUloge();
 
             if (_student.Id != 0)
                 UcitajPodatkeOStudentu();
@@ -46,6 +48,11 @@ namespace FIT.WinForms.Studenti
                 GenerisiBrojIndeksa();
                 GenerisiLozinku();
             }
+        }
+
+        private void UcitajUloge()
+        {
+            cmbUloge.UcitajPodatke(baza.Uloge.ToList());
         }
 
         private void UcitajPodatkeOStudentu()
@@ -57,8 +64,16 @@ namespace FIT.WinForms.Studenti
             txtIndeks.Text = _student.Indeks;
             txtLozinka.Text = _student.Lozinka;
             txtPrezime.Text = _student.Prezime;
-            cmbSemestri.SelectedValue = _student.Semestar;
+            cmbSemestri.SelectedValue = _student.SemestarId;
             pbSlika.Image = _student.Slika.ToImage();
+
+            UcitajUlogeStudenta();
+        }
+
+        private void UcitajUlogeStudenta()
+        {
+            dgvUloge.DataSource = null;
+            dgvUloge.DataSource = _student.Uloga.ToList();
         }
 
         private void GenerisiLozinku()
@@ -68,10 +83,13 @@ namespace FIT.WinForms.Studenti
 
         private void UcitajSemestre()
         {
+            cmbSemestri.UcitajPodatke(baza.Semestri.ToList(), "Oznaka"); // obratiti paznju na "Oznaka"
+
+            /*
             cmbSemestri.DataSource = InMemoryDb.Semestri;
             cmbSemestri.DisplayMember = "Oznaka";
             cmbSemestri.ValueMember = "Id";
-
+            */
         }
 
         private void txtIme_TextChanged(object sender, EventArgs e)
@@ -109,7 +127,6 @@ namespace FIT.WinForms.Studenti
         {
             if (ValidanUnos())
             {
-
                 _student.Aktivan = cbAktivan.Checked;
                 _student.DatumRodjenja = dtpDatumRodjenja.Value;
                 _student.Email = txtEmail.Text;
@@ -117,15 +134,16 @@ namespace FIT.WinForms.Studenti
                 _student.Indeks = txtIndeks.Text;
                 _student.Lozinka = txtLozinka.Text;
                 _student.Prezime = txtPrezime.Text;
-                _student.Semestar = (int)cmbSemestri.SelectedValue;
+                _student.SemestarId = (int)cmbSemestri.SelectedValue;
                 _student.Slika = pbSlika.Image.ToByteArray();
 
-                if(_student.Id == 0)
+                if (_student.Id == 0)
                 {
                     //_student.Id = InMemoryDb.Studenti.Count + 1;
                     //InMemoryDb.Studenti.Add(_student);
                     baza.Studenti.Add(_student);
-                }else
+                }
+                else
                     baza.Entry(_student).State = EntityState.Modified;
 
 
@@ -148,8 +166,13 @@ namespace FIT.WinForms.Studenti
                 Validator.ProvjeriUnos(cmbSemestri, errorProvider1, Kljucevi.ReqiredValue) &&
                 Validator.ProvjeriUnos(txtIndeks, errorProvider1, Kljucevi.ReqiredValue) &&
                 Validator.ProvjeriUnos(txtLozinka, errorProvider1, Kljucevi.ReqiredValue);
+        }
 
-
+        private void btnDodajUlogu_Click(object sender, EventArgs e)
+        {
+            var uloga = cmbUloge.SelectedItem as Uloga;
+            _student.Uloga.Add(uloga);
+            UcitajUlogeStudenta();
         }
     }
 }

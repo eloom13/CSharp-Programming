@@ -2,6 +2,7 @@
 
 namespace FIT.Data
 {
+
     public class Student
     {
         public int Id { get; set; }
@@ -10,24 +11,26 @@ namespace FIT.Data
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Email { get; set; }
-        public byte[] Slika { get; set; }//byte[]
+        public byte[] Slika { get; set; }
         public DateTime DatumRodjenja { get; set; }
         public bool Aktivan { get; set; }
-        public int Semestar { get; set; }//SemestarId -- 1 - 8
+        public Semestar Semestar { get; set; }
+        public int SemestarId { get; set; }
+       
+        public ICollection<Uloga>Uloga { get; set; } = new HashSet<Uloga>();
+
+        //public List<PolozeniPredmet> PolozeniPredmeti { get; set; }
+        //---------------------------------------------------------
+
         public override string ToString()
         {
             return $"{Indeks} {Ime} {Prezime}";
         }
-        
-        //public int GradId { get; set; }
-        //public Grad Grad { get; set; }
-
-        public List<PolozeniPredmet> PolozeniPredmeti{ get; set; }
-
-        public Student()
-        {
-            PolozeniPredmeti = new List<PolozeniPredmet>();
-        }
+      
+        //public Student()
+        //{
+        //    PolozeniPredmeti = new List<PolozeniPredmet>();
+        //}
 
     }
 }
