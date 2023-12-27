@@ -1,6 +1,7 @@
 ﻿using FIT.Data;
 using FIT.Infrastructure;
 using FIT.WinForms.Helpers;
+using FIT.WinForms.Izvjestaji;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace FIT.WinForms.Studenti
                               MessageBoxIcon.Information);
                     return;
                 }
-                
+
 
                 //foreach (var p in student.PolozeniPredmeti)
                 //{
@@ -125,5 +126,25 @@ namespace FIT.WinForms.Studenti
             Validator.ProvjeriUnos(cmbPredmeti, errorProvider1, Kljucevi.ReqiredValue) &&
                 Validator.ProvjeriUnos(cmbOcjene, errorProvider1, Kljucevi.ReqiredValue);
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            var dtoUvjerenje = new dtoPrint()
+            {
+                BrojIndeksa = student.Indeks,
+                ImePrezime = $"{student.Ime} {student.Prezime}",
+                PolozeniPredmeti = dgvPolozeniPredmeti.DataSource as List<PolozeniPredmet>
+            };
+
+            var print = new frmIzvjestaji(dtoUvjerenje);
+            print.ShowDialog();
+        }
+    }
+
+    public class dtoPrint
+    {
+        public string ImePrezime { get; set; }
+        public string BrojIndeksa {  get; set; }
+        public List<PolozeniPredmet> PolozeniPredmeti { get; set; }
     }
 }

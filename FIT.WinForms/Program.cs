@@ -1,3 +1,4 @@
+using FIT.WinForms.Izvjestaji;
 using FIT.WinForms.Predavanja;
 using FIT.WinForms.Predmeti;
 using FIT.WinForms.Studenti;
